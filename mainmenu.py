@@ -1,7 +1,6 @@
-from nis import match
-from unittest import case
 from constant import menuheading
-def rootmenu():
+from patient import newpatient
+def rootmenu(conn):
     def patientmenu():
        while True:
            print(menuheading)
@@ -14,15 +13,15 @@ def rootmenu():
            """)
            option = input("Your choice (1,2,3,4,5): ")
            if (option == "1"):
-                print("new patient")
+               newpatient(conn)
            elif(option =="2"):
-                print("discharge patient")
+               print("discharge patient")
            elif(option=="3"):
-                print("Update patient")
+               print("Update patient")
            elif(option=="4"):
-                print("patient details")
+               print("patient details")
            else:
-            break
+               break
             
     def mainmenu():
         while True:
@@ -37,6 +36,3 @@ def rootmenu():
             if (selection == "1"):
                 patientmenu()
     mainmenu()
-   
-    
-rootmenu()
