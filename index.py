@@ -1,6 +1,6 @@
 import mysql.connector as x
 from constant import *
-from singin import signinprompt
+from signin import signinprompt
 
 conn = x.connect(host=server, user=user, password=password, database=db)
 
