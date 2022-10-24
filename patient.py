@@ -1,10 +1,13 @@
 from constant import *
-def newpatient(conn):
+def newpatient():
     """
     CREATES NEW PATIENT IN DATABASE
     """
     print()
     print("-"*15)
+    conn = connect()
+    b_type = input("Preferred Room Type (A/S/I): ")
+    # sql = "SELECT 
     p_name = input("Patient Name (`'` will be removed): ").replace("'", "")
     p_dis = input("Known Disease(s) separate with comma: ").replace("'", "")
     meds = input("Medicines in Dosage: ").replace("'", "")
@@ -32,5 +35,15 @@ def newpatient(conn):
         cursor = conn.cursor()
         cursor.execute(sql)
         conn.commit()
+    conn.close()
     print("-"*15)
     print()
+
+def discharge_patient():
+    conn = connect()
+    pat_id = input("Enter Patient Admitted ID: ")
+    sql = "SELECT name FROM patient WHERE id="+pat_id+";"
+    cur = conn.cursor()
+    cur.execute(sql)
+    print(cur.rowcount)
+    conn.close()

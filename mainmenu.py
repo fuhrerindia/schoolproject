@@ -1,6 +1,6 @@
 from constant import menuheading
-from patient import newpatient
-def rootmenu(conn):
+from patient import newpatient, discharge_patient
+def rootmenu():
     def patientmenu():
        while True:
            print(menuheading)
@@ -13,9 +13,9 @@ def rootmenu(conn):
            """)
            option = input("Your choice (1,2,3,4,5): ")
            if (option == "1"):
-               newpatient(conn)
+               newpatient()
            elif(option =="2"):
-               print("discharge patient")
+               discharge_patient()
            elif(option=="3"):
                print("Update patient")
            elif(option=="4"):
