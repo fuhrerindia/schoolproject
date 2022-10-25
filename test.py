@@ -1,4 +1,10 @@
-# EXPERIMENTAL FILE
-from constant import find_free
-a = [3,6,1]
-print(find_free(a, 10))
+from patient import newpatient
+from mainmenu import rootmenu
+from constant import show_options
+show_options([{
+    'm': 'Patient Menu',
+    'f': newpatient
+}, {
+    'm': 'Main Menu',
+    'f': rootmenu
+}])

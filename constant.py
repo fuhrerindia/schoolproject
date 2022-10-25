@@ -21,3 +21,28 @@ def find_free(list, limit):
         if (num not in list):
             unexisted.append(num) 
     return unexisted
+def show_options(options, heading=menuheading, ):
+    """
+    CREATES MENU, GETS INPUT AND DO RESPECTIVE TASKS
+    Parameter 1: Options of menu (array) with option as dictionary
+    In dictionary 'f' parameter as function and 'm' as option text.
+    Parameter 2: Heading of the menu (optional)
+    """
+    print(heading)
+    for option in range(len(options)):
+        print(str(option+1) + ". " + str(options[option]['m']))
+    v_op = "("
+    opt = []
+    for i in range(1, len(options)+1):
+        opt.append(i)
+        if (i == len(options)):
+            v_op = v_op + str(i)
+        else:
+            v_op = v_op + str(i) + "|"
+    v_op = v_op + ")"
+    inpt = int(input("Please select your choice " + v_op + ": "))
+    if inpt in opt:
+        f = options[inpt-1]['f']
+        f()
+    else:
+        print("Unknown Choice")
