@@ -6,9 +6,9 @@ db = 'hospital'
 appname = 'GALI KA ASPATAL'
 menuheading = "\nPlease enter serial number for respective functionality."
 limit = {
-    'A': 50, # 50 Beds for AC
-    'S': 80, # 80 Beds for Standar Rooms (Non-Ac)
-    'I': 20, # 20 ICU Beds
+    'A': 8, # 50 Beds for AC
+    'S': 10, # 80 Beds for Standar Rooms (Non-Ac)
+    'I': 2, # 20 ICU Beds
 }
 
 def connect():

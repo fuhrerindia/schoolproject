@@ -1,4 +1,4 @@
-from constant import menuheading
+from constant import menuheading, show_options
 from patient import newpatient, discharge_patient
 def rootmenu():
     def patientmenu():

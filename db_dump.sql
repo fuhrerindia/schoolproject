@@ -26,14 +26,16 @@ CREATE TABLE `ex_patient` (
   `id` int NOT NULL,
   `name` varchar(250) NOT NULL,
   `disease` text,
-  `admission_on` timestamp NULL DEFAULT NULL,
+  `admission_on` text,
   `medicines` text,
   `known_diseases` text,
   `medicines_in_dosage` text,
-  `bed` varchar(12) DEFAULT 'NOT PROVIDED',
   `billed` int NOT NULL DEFAULT '0',
   `initital_amount` int DEFAULT NULL,
   `init_paid` char(1) DEFAULT 'y',
+  `bed` varchar(10) DEFAULT NULL,
+  `discharge_on` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `doctor` text,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -63,14 +65,13 @@ CREATE TABLE `patient` (
   `medicines` text,
   `known_diseases` text,
   `medicines_in_dosage` text,
-  `bed` varchar(12) DEFAULT 'NOT PROVIDED',
   `billed` int NOT NULL DEFAULT '0',
   `initial_amount` int NOT NULL DEFAULT '1500',
   `init_paid` char(1) DEFAULT 'n',
   `r_type` char(1) DEFAULT 'S',
   `bed_n` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -79,7 +80,6 @@ CREATE TABLE `patient` (
 
 LOCK TABLES `patient` WRITE;
 /*!40000 ALTER TABLE `patient` DISABLE KEYS */;
-INSERT INTO `patient` VALUES (1,'huehue','asdd','sdfs','2022-10-22 19:30:12','sdf',NULL,NULL,'NOT PROVIDED',0,1500,'n','S',NULL),(2,'Yuvraj Sinha',NULL,NULL,'2022-10-23 08:24:42','','Bavaseer, Kabz',NULL,'NULL',0,1500,'n','S',NULL),(3,'HEHEHE',NULL,NULL,'2022-10-23 08:26:22','','kabz',NULL,NULL,0,1500,'n','S',NULL),(4,'sdzf',NULL,NULL,'2022-10-23 08:27:11','dsf','sdf',NULL,'adf',0,1500,'n','S',NULL),(5,'',NULL,NULL,'2022-10-23 08:28:25',NULL,NULL,NULL,'',0,1500,'n','S',NULL),(6,'',NULL,NULL,'2022-10-23 08:28:36',NULL,NULL,NULL,NULL,0,1500,'n','S',NULL),(7,'Yuvraj Sinha',NULL,'34,357','2022-10-23 08:34:03',NULL,'kabz, bavaseer','','A32',0,1500,'n','S',NULL),(8,'dxf',NULL,'sd','2022-10-23 08:53:50',NULL,'sf','sdf','as',0,1500,'n','S',NULL),(9,'sdsd',NULL,'asd','2022-10-23 09:00:00',NULL,'sdsd','asd','a32',0,15000,'y','S',NULL),(10,'Paurush',NULL,'','2022-10-23 09:01:26',NULL,'','',NULL,0,15000,'n','S',NULL),(11,'Yuvraj Sinha',NULL,'121,233','2022-10-24 10:09:22',NULL,'Kabz, Bavaseer','Paracetamol','A98',0,15000,'y','S',NULL);
 /*!40000 ALTER TABLE `patient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -119,4 +119,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-24 16:17:47
+-- Dump completed on 2022-10-25 18:04:05
