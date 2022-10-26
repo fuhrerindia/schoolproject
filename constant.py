@@ -10,7 +10,7 @@ limit = {
     'S': 10, # 80 Beds for Standar Rooms (Non-Ac)
     'I': 2, # 20 ICU Beds
 }
-
+test_mode = True
 def connect():
     conn = x.connect(host=server, user=user, password=password, database=db)
     return conn

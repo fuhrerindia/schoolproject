@@ -1,5 +1,5 @@
 from constant import menuheading, show_options
-from patient import newpatient, discharge_patient
+from patient import newpatient, discharge_patient, seedetails
 def rootmenu():
     def patientmenu():
        while True:
@@ -19,7 +19,7 @@ def rootmenu():
            elif(option=="3"):
                print("Update patient")
            elif(option=="4"):
-               print("patient details")
+               seedetails()
            else:
                break
             

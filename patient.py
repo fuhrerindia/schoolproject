@@ -1,5 +1,26 @@
+from re import L
 from constant import *
-import datetime 
+from tabulate import tabulate
+def printdata(data):
+    header = ["Patient Id", "Name", "Disease", "Appointed Doctor", "Admission On", "Medicines Prescribed", "Known Diseases", "Medicines In Dosage", "Billed Amount", "Admission Amount", "Is Admission Amount Paid?", "Room Type", "Bed Number"]
+    for index in range(len(header)):
+        if (data[0][index] == "" or data[0][index] == None or data[0][index] == "None"):
+            val_tp = "Not Applicable"
+        else:
+            val_tp = data[0][index]
+        if (index == 10):
+            if (val_tp == 'y'):
+                val_tp = 'Yes'
+            else:
+                val_tp = 'No'
+        print(header[index]+": ", val_tp, sep="\t")
+def get_record_from_id(id):
+    con = connect()
+    sql = "SELECT * FROM patient WHERE id='"+id+"'"
+    cur = con.cursor()
+    cur.execute(sql)
+    data = cur.fetchall()
+    return data
 def find_empyt_bed():
     valid_type = []
     for key in limit: 
@@ -22,6 +43,60 @@ def find_empyt_bed():
     else:
         print("Invalid Input")
         return None, None
+def seedetails():
+    """
+    SEARCH AND SEE PATIENT
+    """
+    while True:
+        print("""
+            Please select an option from below.
+            1. Search from Patient ID
+            2. Search from patient name
+            3. Get info from bed number
+            4. Go back
+        """)
+        opt = input("Please enter valid input (1,2, 3, 4): ")
+        if (opt == "1"):
+            pid = input("Enter Patient ID: ")
+            data = get_record_from_id(pid)
+            if (len(data)>0):
+                printdata(data)
+            else:
+                print("No Patient Found")
+        elif(opt == "2"):
+            pname = input("Enter patient name: ")
+            sql = "SELECT id, name FROM patient WHERE name LIKE '%"+pname+"%';"
+            con = connect()
+            cur = con.cursor()
+            cur.execute(sql)
+            data = cur.fetchall()
+            con.close()
+            data = [["Patient Id", "Patient Name"]] + data
+            if (len(data) > 0):
+                print()
+                print(tabulate(data, headers="firstrow"))
+                pid = input("Select required Patient ID from above: ")
+                data = get_record_from_id(pid)
+                if (len(data)>0):
+                    printdata(data)
+                else:
+                    print("No Patient Found")
+            else:
+                print("No Patient Found")
+        elif(opt=="3"):
+            pref = input("Input Room Type (A/S/I): ").upper()
+            bdn = input("Input bed number of patient: ")
+            sql = "SELECT * FROM patient WHERE r_type='"+pref+"' AND bed_n='"+bdn+"'"
+            con = connect()
+            cur = con.cursor()
+            cur.execute(sql)
+            data = cur.fetchall()
+            if (len(data) > 0):
+                printdata(data)
+            else:
+                print("No Patient found on this bed.")
+        else:
+            break
 def newpatient():
     """
     CREATES NEW PATIENT IN DATABASE
