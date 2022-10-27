@@ -26,7 +26,10 @@ def patientmenu():
 
 def printdata(data):
     header = ["Patient Id", "Name", "Disease", "Appointed Doctor", "Admission On", "Medicines Prescribed", "Known Diseases", "Medicines In Dosage", "Billed Amount", "Admission Amount", "Is Admission Amount Paid?", "Room Type", "Bed Number"]
-    for index in range(len(header)):
+    vals = []
+    index = 0
+    for i in header:
+        val_tp = data[0][index]
         if (data[0][index] == "" or data[0][index] == None or data[0][index] == "None"):
             val_tp = "Not Applicable"
         else:
@@ -36,7 +39,9 @@ def printdata(data):
                 val_tp = 'Yes'
             else:
                 val_tp = 'No'
-        print(header[index]+": ", val_tp, sep="\t")
+        vals.append([header[index], val_tp])
+        index = index+1
+    print(tabulate(vals))
 def get_record_from_id(id):
     con = connect()
     sql = "SELECT * FROM patient WHERE id='"+id+"'"
