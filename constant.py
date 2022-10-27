@@ -10,7 +10,19 @@ limit = {
     'S': 10, # 80 Beds for Standar Rooms (Non-Ac)
     'I': 2, # 20 ICU Beds
 }
-test_mode = True
+test_mode = False
+def call_sql(sql):
+    conn = x.connect(host=server, user=user, password=password, database=db)
+    cur = conn.cursor()
+    cur.execute(sql)
+    if (sql.split(" ")[0].upper() == "SELECT"):
+        data = cur.fetchall()
+        conn.close()
+        return data
+    else:
+        conn.commit()
+        conn.close()
+        return True
 def connect():
     conn = x.connect(host=server, user=user, password=password, database=db)
     return conn

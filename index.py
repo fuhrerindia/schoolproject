@@ -1,6 +1,6 @@
 from constant import *
-from signin import signinprompt
-from mainmenu import rootmenu
+from authentication import signinprompt
+from mainmenu import mainmenu
 
 """
     HI THERE!
@@ -12,4 +12,4 @@ else:
 print("\n\n")
 print("Hi "+name.split()[0]+", ")
 print("Hope you are doing well, \nWelcome to "+appname)
-rootmenu()
+mainmenu()

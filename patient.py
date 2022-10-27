@@ -1,6 +1,29 @@
-from re import L
 from constant import *
 from tabulate import tabulate
+
+def patientmenu():
+    while True:
+        print(menuheading)
+        print("""
+            1. New Patient
+            2. Discharge Patient
+            3. Update Patient Details
+            4. See Patient Details
+            5. Go Back
+        """)
+        option = input("Your choice (1,2,3,4,5): ")
+        if (option == "1"):
+            newpatient()
+        elif(option =="2"):
+            discharge_patient()
+        elif(option=="3"):
+            updatepatient()
+        elif(option=="4"):
+            seedetails()
+        else:
+            break
+
+
 def printdata(data):
     header = ["Patient Id", "Name", "Disease", "Appointed Doctor", "Admission On", "Medicines Prescribed", "Known Diseases", "Medicines In Dosage", "Billed Amount", "Admission Amount", "Is Admission Amount Paid?", "Room Type", "Bed Number"]
     for index in range(len(header)):
@@ -181,3 +204,134 @@ def discharge_patient():
     else:
         print("Patient with provided ID can't be found, please try again.")
         discharge_patient()
+
+def pre_detal_editing(data):
+    new_name = input("Enter name to update ["+data[1]+"]: ")
+    if (new_name == ""):
+        new_name = data[1]
+    print("Known diseases are listed below")
+    i = 0
+    for disease in data[6].split(", "):
+        i = i+1
+        print(str(i)+".", disease, sep=" ")
+    known_disease = input("Update Known diseases: ")
+    if (known_disease == ""):
+        known_disease = data[6]
+    print("Prescribed meds are listed below")
+    i = 0
+    for meds in data[7].split(", "):
+        i = i+1
+        print(str(i)+".", meds, sep=" ")
+    known_meds = input("Update Known Medicines: ")
+    if (known_meds == ""):
+        known_meds = data[7]
+    sql = "UPDATE patient SET name='"+new_name+"', medicines_in_dosage='"+known_meds+"', known_diseases='"+known_disease+"' WHERE id='"+str(data[0])+"';"
+    if (call_sql(sql)):
+        print("Updated Record")
+    else:
+        print("Error Occured")
+def strong_edit(data):
+    p_meds = input("Enter Prescribed Medicines to update: ")
+    if (p_meds == ""):
+        p_meds = data[5]
+    docs = input("Update Doctors: ")
+    if (docs == ""):
+        docs = data[3]
+    update_bed = input("Update Bed? (y/n): ")
+    if (update_bed == "y"):
+        bn, bt = find_empyt_bed()
+    else:
+        bt = data[11]
+        bn = data[12]
+    sql = "UPDATE patient SET medicines='"+p_meds+"', doctor='"+str(docs)+"', r_type='"+bt+"', bed_n='"+str(bn)+"' WHERE id='"+str(data[0])+"';"
+    if (call_sql(sql)):
+        print("Updated Record")
+    else:
+        print("Error Occured")
+def alter_detail(data):
+    p_meds = input("Enter Prescribed Medicines to add: ")
+    docs = input("Add Doctors: ")
+    d_dis = input("Add disease: ")
+    if (p_meds != ""):
+        if (data[5] != ""):
+            p_meds = data[5] + ", " + p_meds
+    else:
+        p_meds = data[5]
+    if (docs != ""):
+        if (data[3] != ""):
+            docs = data[3] + ", " + docs
+    else:
+        docs = data[3]
+    if (d_dis != ""):
+        if (data[2] != ""):
+            if (data[2] != None):
+                d_dis = data[2] + ", " + d_dis
+    else:
+        d_dis = data[2]
+
+    sql = "UPDATE patient SET medicines='"+p_meds+"', doctor='"+str(docs)+"', disease='"+d_dis+"' WHERE id='"+str(data[0])+"';"
+    if (call_sql(sql)):
+        print("Updated Record")
+    else:
+        print("Error Occured")
+def change_billing(data):
+    print("""
+    1. Initial Bill Paid detail
+    2. Add new amount to bill
+    3. Edit bill amount
+    4. Edit Admission Charges
+    """)
+    option = input("Select option: ")
+    if (option == "1"):
+        is_paid = input("Is initital admission charges paid? (y/n): ")
+        if (is_paid == "y"):
+            vl = "y"
+        else:
+            vl = "n"
+        sql = "UPDATE patient SET init_paid='"+vl+"' WHERE id='"+str(data[0])+"';"
+        call_sql(sql)
+        print("Updated Amount")
+    elif (option == "2"):
+        new_amount = int(input("Enter Amount to add: "))
+        new_amount = data[8] + new_amount
+        new_amount = str(new_amount)
+        sql = "UPDATE patient SET billed='"+new_amount+"' WHERE id='"+str(data[0])+"';"
+        call_sql(sql)
+        print("Updated Bill")
+    elif (option == "3"):
+        amount = input("Enter Bill Amount (Rs. "+str(data[8])+"): ")
+        sql = "UPDATE patient SET billed='"+amount+"' WHERE id='"+str(data[0])+"';"
+        call_sql(sql)
+        print("Changed Billed Amount to Rs.", amount)
+    elif(option == "4"):
+        new_admsn = input("Change Admission Charges (Rs."+str(data[9])+"): ")
+        sql = "UPDATE patient SET initial_amount='"+new_admsn+"' WHERE id='"+str(data[0])+"';"
+        call_sql(sql)
+        print("Updated Admission Charges.")
+
+def updatepatient():
+    pid = input("Enter Patient ID: ")
+    data = call_sql("SELECT * FROM patient WHERE id='"+pid+"';")
+    if (len(data) > 0):
+        while True:
+            print("""
+            Select appropriate option from below.
+            1. Edit patient's early details [Name, Past Meds, Past Known Disease]
+            2. Edit Prescribed Medicines, Doctor, Room Type, Bed Number
+            3. Alter Prescribed Medicines, Doctor, Diagnosed Disease
+            4. Change Billing
+            5. Go Back
+            """)
+            option = input("Select Option (1,2,3): ")
+            if (option == "1"):
+                pre_detal_editing(data[0])
+            elif(option == "2"):
+                strong_edit(data[0])
+            elif(option == "3"):
+                alter_detail(data[0])
+            elif(option == "4"):
+                change_billing(data[0])
+            else:
+                break
+    else:
+        print("Can't Find this patient")

@@ -46,6 +46,7 @@ CREATE TABLE `ex_patient` (
 
 LOCK TABLES `ex_patient` WRITE;
 /*!40000 ALTER TABLE `ex_patient` DISABLE KEYS */;
+INSERT INTO `ex_patient` VALUES (37,'sdvdv','','2022-10-27 18:39:16','','','',0,15000,'y','S1','2022-10-27 13:10:09','');
 /*!40000 ALTER TABLE `ex_patient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -71,7 +72,7 @@ CREATE TABLE `patient` (
   `r_type` char(1) DEFAULT 'S',
   `bed_n` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -80,6 +81,7 @@ CREATE TABLE `patient` (
 
 LOCK TABLES `patient` WRITE;
 /*!40000 ALTER TABLE `patient` DISABLE KEYS */;
+INSERT INTO `patient` VALUES (35,'world','kabz, bavaseer, bukhar','1023, 237, 10','2022-10-26 19:24:28','','','Pili goli',6299,56,'y','S',1),(36,'hello',NULL,'','2022-10-27 13:09:06',NULL,'dv','',0,15000,'n','I',2);
 /*!40000 ALTER TABLE `patient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -119,4 +121,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-25 18:04:05
+-- Dump completed on 2022-10-27 19:14:33
