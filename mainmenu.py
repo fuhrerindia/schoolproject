@@ -2,6 +2,7 @@
 from constant import menuheading
 from patient import patientmenu
 from authentication import logout
+from doctor import doctormenu
 
 def mainmenu():
     while True:
@@ -15,5 +16,7 @@ def mainmenu():
         selection = input("Your choice (1,2,3,4): ")
         if (selection == "1"):
             patientmenu()
+        elif(selection == "2"):
+            doctormenu()
         else:
             logout()
