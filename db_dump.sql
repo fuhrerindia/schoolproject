@@ -16,6 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `doctor`
+--
+
+DROP TABLE IF EXISTS `doctor`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `doctor` (
+  `doctor_id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) DEFAULT NULL,
+  `speciality` varchar(250) DEFAULT NULL,
+  `mobile` char(12) DEFAULT NULL,
+  `age` int DEFAULT NULL,
+  `fees` int DEFAULT NULL,
+  PRIMARY KEY (`doctor_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `doctor`
+--
+
+LOCK TABLES `doctor` WRITE;
+/*!40000 ALTER TABLE `doctor` DISABLE KEYS */;
+INSERT INTO `doctor` VALUES (2,'kutta','sef','23534',23,64);
+/*!40000 ALTER TABLE `doctor` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `ex_patient`
 --
 
@@ -46,7 +74,7 @@ CREATE TABLE `ex_patient` (
 
 LOCK TABLES `ex_patient` WRITE;
 /*!40000 ALTER TABLE `ex_patient` DISABLE KEYS */;
-INSERT INTO `ex_patient` VALUES (37,'sdvdv','','2022-10-27 18:39:16','','','',0,15000,'y','S1','2022-10-27 13:10:09','');
+INSERT INTO `ex_patient` VALUES (35,'world','kabz, bavaseer, bukhar','2022-10-27 00:54:28','','','Pili goli',6299,56,'y','S1','2022-10-27 16:50:17','1023, 237, 10'),(37,'sdvdv','','2022-10-27 18:39:16','','','',0,15000,'y','S1','2022-10-27 13:10:09','');
 /*!40000 ALTER TABLE `ex_patient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -72,7 +100,7 @@ CREATE TABLE `patient` (
   `r_type` char(1) DEFAULT 'S',
   `bed_n` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -81,7 +109,7 @@ CREATE TABLE `patient` (
 
 LOCK TABLES `patient` WRITE;
 /*!40000 ALTER TABLE `patient` DISABLE KEYS */;
-INSERT INTO `patient` VALUES (35,'world','kabz, bavaseer, bukhar','1023, 237, 10','2022-10-26 19:24:28','','','Pili goli',6299,56,'y','S',1),(36,'hello',NULL,'','2022-10-27 13:09:06',NULL,'dv','',0,15000,'n','I',2);
+INSERT INTO `patient` VALUES (36,'hello',NULL,'','2022-10-27 13:09:06',NULL,'dv','',0,15000,'n','I',2),(38,'sfdc',NULL,'','2022-10-27 13:47:11',NULL,'a','',0,15000,'y','A',1);
 /*!40000 ALTER TABLE `patient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -121,4 +149,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-27 19:14:33
+-- Dump completed on 2022-10-30 21:06:57
