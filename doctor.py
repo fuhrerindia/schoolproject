@@ -1,5 +1,4 @@
 from constant import *
-import mysql.connector as ms
 from tabulate import tabulate
 def doctormenu():
     cn=connect()
