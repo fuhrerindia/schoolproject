@@ -13,3 +13,9 @@ Made by:
 - Doctor Menu `doctor.py`
 ## Siya Sharma
 - Staff Menu `staff.py`
+
+## Steps to Installation
+- Download or Clone the repository
+- Open MySQL Shell
+- Run command `SOURCE [--path--to-db_dump.sql]/db_dump.sql`
+That's It!
