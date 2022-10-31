@@ -10,6 +10,6 @@ Made by:
 - Main Menu `mainmenu.py`
 - Others `constant.py` `db_dump.sql`
 ## Lakshay Manot
-- Doctor Menu
+- Doctor Menu `doctor.py`
 ## Siya Sharma
-- Staff Menu
+- Staff Menu `staff.py`
