@@ -123,11 +123,13 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(250) DEFAULT NULL,
-  `username` varchar(10) NOT NULL,
+  `username` varchar(250) DEFAULT NULL,
   `password` varchar(15) NOT NULL,
   `salary` int DEFAULT NULL,
+  `post` varchar(250) DEFAULT NULL,
+  `sex` char(6) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136,7 +138,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Paurush Sinha','admin','hari',10000000);
+INSERT INTO `user` VALUES (1,'Paurush Sinha','admin','hari',10000000,NULL,NULL),(3,'Paurush Sinha','sinha.paurush','abc',10000,'Manager','male');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -149,4 +151,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-30 21:06:57
+-- Dump completed on 2022-10-31 20:28:20

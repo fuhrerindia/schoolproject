@@ -1,3 +1,15 @@
 # Hospital Management
 Made by:
-- Paurush Sinha
+- Paurush Sinha (12E)
+- Lakshay Manot (12E)
+- Siya Sharma (12C)
+
+## Paurush Sinha
+- User Authentication `index.py`, `storage.txt`, `authentication.py`
+- Patient Menu `patient.py`
+- Main Menu `mainmenu.py`
+- Others `constant.py` `db_dump.sql`
+## Lakshay Manot
+- Doctor Menu
+## Siya Sharma
+- Staff Menu

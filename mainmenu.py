@@ -3,6 +3,7 @@ from constant import menuheading
 from patient import patientmenu
 from authentication import logout
 from doctor import doctormenu
+from staff import menu
 
 def mainmenu():
     while True:
@@ -18,5 +19,7 @@ def mainmenu():
             patientmenu()
         elif(selection == "2"):
             doctormenu()
+        elif(selection == "3"):
+            menu()
         else:
             logout()
